@@ -1,0 +1,33 @@
+<nb-layout>
+  <nb-layout-header fixed>
+    <button nbButton (click)="toggle()">
+      <nb-icon icon="menu"></nb-icon>
+    </button>
+    <img src="https://via.placeholder.com/50/4479e7/ffffff?Text=IMG" style="margin-left: 1em;">
+    <nb-user size="large" name="Jonh Doe" title="Engineer" onlyPicture
+      picture="https://via.placeholder.com/50/4479e7/ffffff?Text=IMG"></nb-user>
+  </nb-layout-header>
+
+
+  <nb-layout-header subheader clipped>
+    <nb-actions size="medium">
+      <nb-action>HOME</nb-action>
+      <nb-action>CUSTOMER</nb-action>
+    </nb-actions>
+  </nb-layout-header>
+
+  <nb-sidebar tag="left">
+    <nb-accordion>
+      <nb-accordion-item>
+        <nb-accordion-item-header>Customer</nb-accordion-item-header>
+        <nb-accordion-item-body>
+          View Customers
+        </nb-accordion-item-body>
+      </nb-accordion-item>
+    </nb-accordion>
+  </nb-sidebar>
+
+  <nb-layout-column class="colored-column-warning">
+    <router-outlet></router-outlet>
+  </nb-layout-column>
+</nb-layout>

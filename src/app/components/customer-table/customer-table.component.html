@@ -1,0 +1,46 @@
+<button style="float: right;" status="success" nbButton (click)="addCustomer()">Add Random Customer</button>
+<button style="float: right;" status="success" nbButton (click)="open()">Add Customer</button>
+
+<label class="search-label" for="search">Search:</label>
+<input nbInput [nbFilterInput]="dataSource" id="search" class="search-input" fullWidth>
+
+<table [nbTreeGrid]="dataSource" [nbSort]="dataSource" (sort)="updateSort($event)" equalColumnsWidth>
+
+  <tr nbTreeGridHeaderRow *nbTreeGridHeaderRowDef="allColumns"></tr>
+  <tr nbTreeGridRow *nbTreeGridRowDef="let row; columns: allColumns"></tr>
+
+  <ng-container [nbTreeGridColumnDef]="customColumn">
+    <th nbTreeGridHeaderCell [nbSortHeader]="getSortDirection(customColumn)" *nbTreeGridHeaderCellDef>
+      {{customColumn |uppercase}}
+    </th>
+    <td nbTreeGridCell *nbTreeGridCellDef="let row ; let index = index">
+      <button nbButton status="warning">
+        <nb-icon icon="edit"></nb-icon>
+      </button>
+      <button nbButton status="danger" (click)="deleteCustomer(dialog,index)">
+        <nb-icon icon="trash"></nb-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <ng-container *ngFor="let column of defaultColumns; let index = index" [nbTreeGridColumnDef]="column"
+    [showOn]="getShowOn(index)">
+    <th nbTreeGridHeaderCell [nbSortHeader]="getSortDirection(column)" *nbTreeGridHeaderCellDef>
+      {{column | uppercase}}
+    </th>
+    <td nbTreeGridCell *nbTreeGridCellDef="let row">{{row.data[column] || '-'}}</td>
+  </ng-container>
+
+</table>
+
+
+
+<ng-template #dialog let-data let-ref="dialogRef">
+  <nb-card>
+    <nb-card-header>The Record will be deleted</nb-card-header>
+    <nb-card-body>{{ data }}</nb-card-body>
+    <nb-card-footer>
+      <button nbButton (click)="ref.close(true)">Delete</button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>

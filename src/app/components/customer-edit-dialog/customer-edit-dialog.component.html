@@ -1,0 +1,19 @@
+<nb-card>
+  <nb-card-header>Add Customer</nb-card-header>
+  <nb-card-body>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+      <div class="form-group">
+        <input type="text" nbInput fullWidth shape="round" placeholder="Name" formControlName="name">
+        <input type="text" nbInput fullWidth shape="round" placeholder="Contact" formControlName="contact">
+        <input type="text" nbInput fullWidth shape="round" placeholder="Address" formControlName="address">
+      </div>
+
+
+      <button nbButton stype="submit" class="submit">Submit</button>
+    </form>
+  </nb-card-body>
+  <nb-card-footer>
+    <button nbButton (click)="close()">Close Dialog</button>
+  </nb-card-footer>
+</nb-card>

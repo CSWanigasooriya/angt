@@ -1,0 +1,15 @@
+<app-customer-table></app-customer-table>
+
+<!-- app.component.html -->
+<h1>IndexedDB Using Dexie</h1>
+
+<div *ngFor="let todoList of customers$ | async; trackBy: identifyList">
+  <ul>
+    <li>{{todoList|json}}</li>
+  </ul>
+</div>
+<label>
+  Add new list:
+  <input autocomplete="off" type="text" id="name" #name [(ngModel)]="customerName" />
+</label>
+<button type="submit" (click)="addNewCustomer()">Add new list</button>
